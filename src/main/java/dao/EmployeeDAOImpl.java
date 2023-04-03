@@ -78,11 +78,15 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     @Override
-    public void updateByID(int id, String lastName) {
+    public void updateByID(int id, String firstName, String lastName, String gender, int age, int cityId) {
         try(PreparedStatement statement = connection.prepareStatement(
-           "UPDATE employee SET last_name = (?) WHERE id = (?)")) {
-            statement.setString(1, lastName);
-            statement.setInt(2, id);
+           "UPDATE employee SET first_name = (?), last_name = (?), gender = (?), age = (?), city_id = (?) WHERE id = (?)")) {
+            statement.setString(1, firstName);
+            statement.setString(2, lastName);
+            statement.setString(3, gender);
+            statement.setInt(4, age);
+            statement.setInt(5, cityId);
+            statement.setInt(6, id);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
