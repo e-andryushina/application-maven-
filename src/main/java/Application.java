@@ -9,9 +9,9 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) throws SQLException {
-        final String user = "student";
-        final String password = "student";
-        final String url = "jdbc:postgresql://localhost:5432/skypro";
+//        final String user = "student";
+//        final String password = "student";
+//        final String url = "jdbc:postgresql://localhost:5432/skypro";
 
 //        try (Connection connection = DriverManager.getConnection(url, user, password);
 //             PreparedStatement statement = connection.prepareStatement("SELECT * FROM employee WHERE id = (?)")) {
@@ -34,34 +34,30 @@ public class Application {
 //            e.printStackTrace();
 //        }
 
-        try (Connection connection = DriverManager.getConnection(url, user, password)) {
-            EmployeeDAO employeeDAO = new EmployeeDAOImpl(connection);
+//        try (Connection connection = DriverManager.getConnection(url, user, password)) {
+//            EmployeeDAO employeeDAO = new EmployeeDAOImpl(connection);
 //           City city = new City(1, "Rome");
 //           City city2 = new City(3, "Moscow");
-//            Employee employee1 = new Employee(7, "Petr", "Ivanov", "m", 34, city);
-//            Employee employee2 = new Employee(8, "Ivan", "Rybin", "m", 46, city);
-//            Employee employee3 = new Employee(7, "Maria", "Smirnova", "f", 23, city2);
-//            Employee employee4 = new Employee(8, "Inna", "Novikova", "f", 43, city2);
-//
-//            employeeDAO.create(employee1);
-//            employeeDAO.create(employee2);
-//            employeeDAO.create(employee3);
-//            employeeDAO.create(employee4);
+//        Employee employee1 = new Employee(7, "Petr", "Ivanov", "m", 34, city);
+//        Employee employee2 = new Employee(8, "Ivan", "Rybin", "m", 46, city);
+//        Employee employee3 = new Employee(7, "Maria", "Smirnova", "f", 23, city2);
+//        Employee employee4 = new Employee(8, "Inna", "Novikova", "f", 43, city2);
 
-//        List<Employee> list = new ArrayList<>(employeeDAO.getAll());
-//            for (Employee employee : list) {
-//                System.out.println(employee);
-//            }
+        EmployeeDAO employeeDAO = new EmployeeDAOImpl();
+        Employee employee5 = new Employee(9, "Anna", "Krylova", "f", 37, 2);
 
-//            System.out.println(employeeDAO.getById(14));
+            employeeDAO.create(employee5);
 
-//            employeeDAO.updateByID(4, "Romanova");
+        List<Employee> list = employeeDAO.getAll();
+            for (Employee employee : list) {
+                System.out.println(employee);
+            }
 
-            employeeDAO.deleteById(15);
-
+            System.out.println(employeeDAO.getById(14));
+        Employee employee2 = new Employee(8, "Oleg", "Rybin", "m", 46, 1);
+            employeeDAO.update(employee2);
+            employeeDAO.delete(employee5);
         }
-
-
     }
-}
+
 
