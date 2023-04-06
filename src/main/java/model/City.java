@@ -1,15 +1,38 @@
 package model;
 
+import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
+
+@Entity
+@Table(name = "city")
 public class City {
-    private final int id;
-    private String name;
 
+    @OneToMany(mappedBy = "city")
+    private Set<Employee> employees;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "city_id")
+    private int id;
+    @Column(name = "city_name")
+    private String name;
 
     public City(int id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public City() {
+    }
+
+    public Set<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Set<Employee> employees) {
+        this.employees = employees;
     }
 
     public int getId() {

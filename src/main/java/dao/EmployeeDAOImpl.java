@@ -4,11 +4,6 @@ import model.Employee;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeDAOImpl implements EmployeeDAO {
@@ -23,14 +18,16 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
     @Override
     public Employee getById(int id) {
-        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Employee.class, id);
+        try(Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
+            return  session.get(Employee.class, id);
+        }
     }
 
     @Override
     public List<Employee> getAll() {
-        List<Employee> employees = (List<Employee>) HibernateSessionFactoryUtil
-                .getSessionFactory().openSession().createQuery("From Employee").list();
-        return employees;
+        try(Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
+           return session.createQuery("From Employee", Employee.class).list();
+        }
     }
 
     @Override

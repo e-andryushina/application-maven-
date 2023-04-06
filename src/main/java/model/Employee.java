@@ -8,6 +8,10 @@ import java.util.Objects;
 @Table(name = "employee")
 public class Employee {
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "city_id")
+    private City city;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -23,16 +27,16 @@ public class Employee {
     @Column(name = "age")
     private int age;
     @Column(name = "city_id")
-    private int city;
+    private int cityId;
 
 
-    public Employee(int id, String firstName, String lastName, String gender, int age, int city) {
+    public Employee(int id, String firstName, String lastName, String gender, int age, int cityId) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
         this.age = age;
-        this.city = city;
+        this.cityId = cityId;
     }
 
     public Employee() {
@@ -79,12 +83,12 @@ public class Employee {
         this.age = age;
     }
 
-    public int getCity() {
-        return city;
+    public int getCityId() {
+        return cityId;
     }
 
-    public void setCity(int city) {
-        this.city = city;
+    public void setCity(int cityId) {
+        this.cityId = cityId;
     }
 
     @Override

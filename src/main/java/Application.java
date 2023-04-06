@@ -44,7 +44,7 @@ public class Application {
 //        Employee employee4 = new Employee(8, "Inna", "Novikova", "f", 43, city2);
 
         EmployeeDAO employeeDAO = new EmployeeDAOImpl();
-        Employee employee5 = new Employee(9, "Anna", "Krylova", "f", 37, 2);
+        Employee employee5 = new Employee(10, "Aleftina", "Semenova", "f", 37, 2);
 
             employeeDAO.create(employee5);
 
@@ -53,8 +53,8 @@ public class Application {
                 System.out.println(employee);
             }
 
-            System.out.println(employeeDAO.getById(14));
-        Employee employee2 = new Employee(8, "Oleg", "Rybin", "m", 46, 1);
+            System.out.println(employeeDAO.getById(10));
+        Employee employee2 = new Employee(8, "Sergey", "Rybin", "m", 46, 1);
             employeeDAO.update(employee2);
             employeeDAO.delete(employee5);
         }
